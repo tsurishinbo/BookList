@@ -2,16 +2,17 @@ package bean;
 
 import dao.*;
 import entity.*;
+import java.io.Serializable;
 import java.util.List;
 import javax.annotation.PostConstruct;
 import javax.ejb.EJB;
-import javax.enterprise.context.RequestScoped;
 import javax.faces.context.*;
+import javax.faces.view.ViewScoped;
 import javax.inject.Named;
 
 @Named
-@RequestScoped
-public class IndexBean {
+@ViewScoped
+public class IndexBean implements Serializable {
     
     private List<TBook> bookList;
 
@@ -23,7 +24,11 @@ public class IndexBean {
         bookList = tBookDao.findAll();
     }
 
-    public String editAction(int id) {
+    public String add() {
+        return "regist.xhtml?faces-redirect=true";
+    }
+    
+    public String update(int id) {
         Flash flash = FacesContext.getCurrentInstance().getExternalContext().getFlash();
         flash.put("id", id);
         return "edit.xhtml?faces-redirect=true";

@@ -25,11 +25,11 @@
                         <td>#{item.title}</td>
                         <td>#{item.memo}</td>
                         <td>#{indexBean.getPointMark(item.point)}</td>
-                        <td><h:commandButton value="編集" action="#{indexBean.editAction(item.id)}" /></td>
+                        <td><h:commandButton value="編集" action="#{indexBean.update(item.id)}" /></td>
                     </tr>
                 </tbody>
             </table>
-            <input type="button" value="新規登録" onclick="window.location.href='regist.xhtml'" />
+            <h:commandButton value="新規登録" action="#{indexBean.add()}" />
         </h:form>
     </h:body>
 </html>

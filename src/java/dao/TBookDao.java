@@ -23,13 +23,22 @@ public class TBookDao {
         Query query = em.createNamedQuery("TBook.findById");
         query.setParameter("id", id);
         try {
-            return (TBook)query.getSingleResult();
+            TBook book = (TBook)query.getSingleResult();
+            return book;
         } catch (javax.persistence.NoResultException e ) {
             return null;
         }
     }
     
+    public void insert(TBook book) {
+        em.persist(book);
+        em.flush();
+        em.clear();
+    }
+    
     public void update(TBook book) {
         em.merge(book);
+        em.flush();
+        em.clear();
     }
 }
